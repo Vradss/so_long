@@ -46,7 +46,7 @@ int main (int argc, char **argv){
         error();
     }
 
-    t_rect rect = {100, 100, 200, 120};
+    t_rect rect = {100, 100, 200, 120}; //crear funcion , no acepta norma
     draw_rect(img, rect);
     mlx_image_to_window(mlx, img, 0, 0);
 
