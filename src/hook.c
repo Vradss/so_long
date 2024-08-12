@@ -1,6 +1,4 @@
-#include <MLX42/MLX42.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "../include/so_long.h"
 
 //struct define position and dimensions 
 typedef struct rect{
@@ -10,8 +8,8 @@ typedef struct rect{
     int height;
 }t_rect;
 
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 1000
+#define HEIGHT 1000
 
 typedef struct pos{
     int x;
@@ -47,7 +45,6 @@ void draw_rect(mlx_image_t *img, t_rect rect){
 //keys d : derecha, s: abajo, a: izquierda, w: arriba
 
 void key_handle(mlx_key_data_t keydata, void* param){
-    mlx_image_t *img = (mlx_image_t *)param; //casteamos param para que sea un mlx_image_t
     
     if(keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
         pos.x = pos.x + 64;
@@ -57,18 +54,34 @@ void key_handle(mlx_key_data_t keydata, void* param){
         pos.y = pos.y + 64;
     if(keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
         pos.y = pos.y - 64;
+    if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+        mlx_close_window((mlx_t*)param);
 
 }
 
+//clean image
+
+
+void mlx_image_clear(mlx_image_t* img, uint32_t color) {
+    uint32_t x = 0;
+    while (x < img->width) {
+        uint32_t y = 0;
+        while (y < img->height) {
+            mlx_put_pixel(img, x, y, color);
+            y++;
+        }
+        x++;
+    }
+}
 
 void game_loop(void *param){
     mlx_image_t *img = (mlx_image_t *)param;
 
+    mlx_image_clear(img, 0x000000);
     t_rect rect = {pos.x, pos.y, 64, 64};
     draw_rect(img, rect);
 
 }
-
 
 int main (){
     mlx_t *mlx;

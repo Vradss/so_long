@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     printf("W:%d\n", width);
     printf("H:%d\n", height);
 
-    mlx_loop(mlx);
+    mlx_loop(mlx); //mantiene la ventana abierta
     mlx_terminate(mlx);
 
     return 0;

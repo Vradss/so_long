@@ -6,7 +6,7 @@
 #    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/08/09 21:11:08 by vflorez          ###   ########.fr        #
+#    Updated: 2024/08/12 19:25:43 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,52 +23,49 @@ NAME_PROJECT = so_long
 
 #Sources
 SRC_DIR = src
-SRC_FILES = main.c\
+SRC_FILES = src/hook.c 
 
-MLX = $(SRC_DIR)/MLX42/build/libmlx42.a
+MLX = $(SRC_DIR)/MLX42
 LIBFT = $(SRC_DIR)/libft
 PRINTF = $(SRC_DIR)/Printf
 
-GNL = $(SRC_DIR)/gnl 
-GNL_FILES = get_next_line.c \
-			get_next_line_utils.c \
-
-#All Sources
-SRCS  = $(addprefix $(SRC_DIR)/, $(SRC_FILES) $(GNL_FILES))
-
 #Compiler
-CC = gcc -g
+CC = gcc
 CFLAGS = -Wextra -Wall -Werror -Wunreachable-code -Ofast
-# LINKFLAGS = -L./$(LIBFT) -lft -L./$(PRINTF) -lftprintf
-LINKFLAGS = -LMLX42/build/libmlx42.a -lmlx42 -I MLX42/include -ldl -lglfw -pthread -lm
+MLX_FLAGS = -L./$(MLX)/build -lmlx42 -I $(MLX)/include -ldl -lglfw -pthread -lm
+LINKFLAGS = -L./$(LIBFT) -lft -L./$(PRINTF) -lftprintf
 
 #Objects
 OBJ_DIR = obj
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-OBJ_GNL_DIR = $(OBJ_DIR)/gnl
-
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 #Rules
 all: $(NAME_PROJECT)
 
 $(NAME_PROJECT) : $(OBJ_FILES)
-	@$(CC) $(CFLAGS) -o $(NAME_PROJECT) $(OBJ_FILES) $(LINKFLAGS)
+	@$(MAKE) -C $(LIBFT) -s
+	@$(MAKE) -C $(PRINTF) -s
+	@$(CC) $(CFLAGS) -o $(NAME_PROJECT) $(OBJ_FILES) $(MLX_FLAGS) $(LINKFLAGS)
 	@echo "$(BLUE) $(NAME_PROJECT) --> Created & compiled 👀$(END)"
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I MLX42/include -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(MLX)/include -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
 	@rm -rf $(OBJ_FILES)
+	@$(MAKE) clean -C $(LIBFT) -s
+	@$(MAKE) clean -C $(PRINTF) -s
 	@echo "$(GREEN) All .o files deleted 💀💀 $(END)"
 
 fclean: clean
+	@$(MAKE) fclean -C $(LIBFT) -s
+	@$(MAKE) fclean -C $(PRINTF) -s
 	@rm -f $(NAME_PROJECT)
-	@echo "$(BLUE) $(NAME_PROJECT) deleted 💀💀 $(END)"
+	@echo "$(RED) $(NAME_PROJECT) deleted 💀💀 $(END)"
 
 re: fclean all
 
