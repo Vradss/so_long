@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/14 21:38:58 by vflorez          ###   ########.fr       */
+/*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
+/*   Updated: 2024/08/14 21:32:34 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int main(int argc, char **argv)
+void    error(char *message)
 {
-    if (!check_args(argc, argv))
-        return (1);
-
-    ft_printf("All args are correct\n");
-    read_map(argv[1]);
-    return (0);
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(message, 2);
+	exit(1);
 }
+

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vradis <vradis@student.42.fr>              +#+  +:+       +#+         #
+#    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/02 12:27:39 by vflorez           #+#    #+#              #
-#    Updated: 2023/12/16 13:54:32 by vradis           ###   ########.fr        #
+#    Updated: 2024/08/13 15:52:39 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ ft_striteri.c\
 ft_putchar_fd.c\
 ft_putstr_fd.c\
 ft_putendl_fd.c\
-ft_putnbr_fd.c
+ft_putnbr_fd.c\
+get_next_line.c\
+get_next_line_utils.c
 
 
 OBJ = $(SRC:.c=.o)

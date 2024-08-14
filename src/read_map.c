@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/14 21:38:58 by vflorez          ###   ########.fr       */
+/*   Created: 2024/08/13 17:23:44 by vflorez           #+#    #+#             */
+/*   Updated: 2024/08/13 19:12:33 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int main(int argc, char **argv)
+int read_map(char *map)
 {
-    if (!check_args(argc, argv))
-        return (1);
+    int fd;
+    char *line;
 
-    ft_printf("All args are correct\n");
-    read_map(argv[1]);
-    return (0);
+    int i = 0;
+    fd = open(map, O_RDONLY);
+    if (fd < 0)
+    {
+        ft_printf("Error al abrir el archivo\n");
+        exit(1);
+    }
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
+        ft_printf("%s", line);
+        free(line);
+        line = get_next_line(fd);
+        i++;
+    }
+    //free(line);
+    close(fd);
+    return (i);
 }

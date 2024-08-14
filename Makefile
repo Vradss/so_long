@@ -6,7 +6,7 @@
 #    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/08/12 19:25:43 by vflorez          ###   ########.fr        #
+#    Updated: 2024/08/14 21:39:12 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,12 @@ NAME_PROJECT = so_long
 
 #Sources
 SRC_DIR = src
-SRC_FILES = src/hook.c 
+SRC_FILES = \
+			src/check_args.c \
+			src/read_map.c \
+			src/check_maps.c \
+			src/error.c \
+			src/main.c \
 
 MLX = $(SRC_DIR)/MLX42
 LIBFT = $(SRC_DIR)/libft
