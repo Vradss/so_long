@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/14 22:06:27 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:21:53 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 
 typedef struct s_map {
-    char **map;
+    char **grid;
     int player;
     int exit;
     int collectable;
@@ -32,22 +32,31 @@ typedef struct s_map {
     int height;
 }t_map;
 
+typedef struct s_player {
+    int x;
+    int y;
+}t_player;
 
 typedef struct s_game {
     t_map *map;
+    t_player *player;
 }t_game;
 
 //Check maps
 
 int     check_args(int argc, char **argv);
 int     read_map(char *map);
-void    check_map_area(char *map);
+void    check_map_area(t_map *map);
 void    check_invalid_char(int c);
-void    check_map_rectangle(char **map);
+void    check_map_char(t_map *map);
+void    check_map_rectangle(t_map *map);
+void    check_wall(t_map *map);
+t_map   *create_map(char *file_path);
 
 //Utils
 
 void	error(char *message);
+void    free_map(t_map *map);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:24:25 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/14 22:23:40 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:48:08 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,52 +24,82 @@ void check_invalid_char(int c)
         error("Invalid character in map");
 }
 
-
-void check_map_area(char *map)
+void check_map_area(t_map *map)
 {
-    int player;
-    int exit;
-    int collectable;
-    int i;
+    int x;
+    int y;
+
+    map->player = 0;
+    map->exit = 0;
+    map->collectable = 0;
+    x = 0;
+    y = 0;
     
-    player = 0;
-    exit = 0;
-    collectable = 0;
-    i = 0;
-    
-    while (map[i])
+    while (x < map->height)
     {
-        if (map[i] == 'P')
-            player++;
-        else if (map[i] == 'E')
-            exit++;
-        else if (map[i] == 'C')
-            collectable++;
-        else if (map[i] != '0' && map[i] != '1' && map[i] != '\n')
-            check_invalid_char(map[i]);
-        i++;
+        while (y < map->width)
+        {
+            if (map->grid[x][y] == 'P')
+                map->player++;
+            else if (map->grid[x][y] == 'E')
+                map->exit++;
+            else if (map->grid[x][y] == 'C')
+                map->collectable++;
+            else if (map->grid[x][y] != '0' && map->grid[x][y] != '1' && map->grid[x][y] != '\n')
+                check_invalid_char(map->grid[x][y]);
+            y++;
+        }
+        x++;
     }
-    if (player != 1 || exit != 1 || collectable < 1)
+}
+
+void check_map_char(t_map *map)
+{
+    map->player = 0;
+    map->exit = 0;
+    map->collectable = 0;
+
+    if (map->player != 1 || map->exit != 1 || map->collectable < 1)
         error("Map content is not valid");
 }
-
+        
 //This function checks if the map is rectangle
 
-void    check_map_rectangle(char **map)
-{
-    int i;
-    int len;
+// void    check_map_rectangle(t_map *map)
+// {
+//     size_t i;
+//     size_t len;
     
-    i = 0;
-    len = ft_strlen(map[i]);
-    while (map[i])
+//     i = 0;
+//     len = ft_strlen(map->grid[i]);
+//     while (map->grid[i])
+//     {
+//         if (len != ft_strlen(map->grid[i]))
+//             error("Map is not rectangle");
+//         i++;
+//     }pwd
+// }
+
+//These functions verifies the walls horizontal and vertical
+
+void check_wall(t_map *map)
+{
+    int x;
+    int y;
+    
+    x = 0;
+    y = 0;
+    while (x < map->width)
     {
-        if (len != ft_strlen(map[i]))
-            error("Map is not rectangle");
-        i++;
+        if (map->grid[0][x] != '1' || map->grid[map->height - 1][x] != '1')
+            error("Wall error");
+        x++;
+    }
+    while (y < map->height)
+    {
+        if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
+            error("Wall error");
+        y++;
     }
 }
 
-//This function verifies the walls horizontal and vertical
-
-void check_
