@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 18:35:58 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 16:32:15 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,3 @@ void    error(char *message)
 	exit(1);
 }
 
-void free_map(t_map *map)
-{
-	int i;
-
-	i = 0;
-	if (map)
-	{
-		while (i < map->height)
-		{
-			free(map->grid[i]); //liberamos cada fila
-			i++;
-		}
-		free(map->grid); //liberamos el array de punteros
-		free(map);
-	}
-}

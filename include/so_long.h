@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:21:53 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 20:13:17 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,34 @@
 # include "../src/MLX42/include/MLX42/MLX42.h"
 
 
+typedef struct s_vec2 {
+    int x;
+    int y;
+}               t_vec2;
+
 typedef struct s_map {
-    char **grid;
-    int player;
-    int exit;
-    int collectable;
-    int width;
-    int height;
+    char    **grid;
+    int     player;
+    int     exit;
+    int     collectable;
+    size_t  width;
+    size_t  height;
 }t_map;
 
 typedef struct s_player {
-    int x;
-    int y;
+    t_vec2 pos;
 }t_player;
 
-typedef struct s_game {
-    t_map *map;
-    t_player *player;
-}t_game;
+typedef struct  s_game {
+    t_map   *map;
+    t_vec2  player;
+}               t_game;
+
+// Disjoint and vectos
+t_vec2  vec2(int x, int y);
+int     vec2_cmp(t_vec2 u, t_vec2 v);
 
 //Check maps
-
 int     check_args(int argc, char **argv);
 int     read_map(char *map);
 void    check_map_area(t_map *map);
@@ -51,7 +58,10 @@ void    check_invalid_char(int c);
 void    check_map_char(t_map *map);
 void    check_map_rectangle(t_map *map);
 void    check_wall(t_map *map);
-t_map   *create_map(char *file_path);
+char   **create_map(char *file);
+size_t  map_width(char **map);
+size_t  map_height(char **map);
+void    parsing(t_map *map);
 
 //Utils
 

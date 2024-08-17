@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:53:23 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 20:36:50 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,68 @@ void print_map(t_map *map)
         printf("El mapa no está inicializado o es nulo.\n");
         return;
     }
-
-    for (int i = 0; i < map->height; i++)
+   // ft_printf("Número de filas: %d\n", map->height);
+    //ft_printf("Número de columnas: %d\n", map->width);
+    
+    for (size_t i = 0; i < map->height; i++)
     {
-        printf("%s", map->grid[i]);
+        printf("%s\n", map->grid[i]);
     }
+}
+
+t_vec2  determine_square_coordinates(char **grid, char element)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (grid[i])
+    {
+        j = 0;
+        while (grid[i][j])
+        {
+            if (grid[i][j] == element)
+                return (vec2(j, i));
+            j++;
+        }
+        i++;
+    }
+}
+
+t_game  initialize_game(t_map *map)
+{
+    t_game  g;
+
+    g.map = map;
+    g.player = determine_square_coordinates(map->grid, 'P');
+    return (g);
 }
 
 int main(int argc, char **argv)
 { 
-    t_map *map;
-    
-    
-    if (!check_args(argc, argv))
-        return (1);
+    t_map   map;
+    t_game  game;
 
-    map = create_map(argv[1]);
-    if (!map)
-        return (1);
-        
-    print_map(map);
-    check_map_area(map);
-    //check_map_rectangle(map);
-    check_wall(map);
-
-    free_map(map);
+    printf("Comenzando el programa...\n");
     
+    if (!check_args(argc, argv)) {
+        printf("Argumentos inválidos\n");
+        return (1);
+    }
+
+    
+    map.grid = create_map(argv[1]);
+    if (!map.grid) {
+        printf("Error al crear el mapa\n");
+        return (1);
+    }
+    parsing(&map);
+    game = initialize_game(&map);
+    
+    printf("Liberando el mapa...\n");
+    //free_map(&map);
+    
+    printf("Finalizando el programa...\n");
     return (0);
 }

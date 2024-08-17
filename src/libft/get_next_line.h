@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:39:06 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:33:25 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 13:51:13 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*rest_storage(char *storage);
 
 //utils_required
 int		ft_strchr_gnl(const char *str, int c);
-void	*ft_calloc(size_t num_elements, size_t size);
+void	*ft_calloc_gnl(size_t num_elements, size_t size);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 size_t	ft_strlen_gnl(const char *str);
 

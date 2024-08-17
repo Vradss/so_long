@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:39:10 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:33:48 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 13:51:55 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*read_join_file(int fd, char *storage)
 	char	*temp_storage;
 	int		bytes_read;
 
-	temp_storage = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	temp_storage = (char *)ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (!temp_storage)
 		return (free(storage), storage = NULL, NULL);
 	bytes_read = 1;
@@ -73,7 +73,7 @@ char	*get_line_storage(char *storage)
 		i++;
 	if (storage[0] == '\0')
 		return (NULL);
-	line = (char *)ft_calloc((i + 1 + (storage[i] == '\n')), sizeof(char));
+	line = (char *)ft_calloc_gnl((i + 1 + (storage[i] == '\n')), sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -99,7 +99,7 @@ char	*rest_storage(char *storage)
 		i++;
 	if (storage[i] == '\0')
 		return (free(storage), storage = NULL, NULL);
-	temp_storage = ft_calloc(ft_strlen_gnl(storage) - i + 1, sizeof(char));
+	temp_storage = ft_calloc_gnl(ft_strlen_gnl(storage) - i + 1, sizeof(char));
 	if (!temp_storage)
 		return (free(storage), storage = NULL, NULL);
 	j = 0;

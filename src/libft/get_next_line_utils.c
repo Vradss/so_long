@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:38:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:35:18 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 13:52:54 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strchr_gnl(const char *str, int c)
 	return (0);
 }
 
-void	*ft_calloc(size_t num_elements, size_t size)
+void	*ft_calloc_gnl(size_t num_elements, size_t size)
 {
 	char			*memory_allocated;
 	unsigned int	i;
@@ -46,13 +46,13 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = ft_calloc(1, sizeof(char));
+		s1 = ft_calloc_gnl(1, sizeof(char));
 		if (!s1)
 			return (free(s1), s1 = NULL, NULL);
 	}
 	if (!s1 || !s2)
 		return (free(s1), s1 = NULL, NULL);
-	result = (char *)ft_calloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1),
+	result = (char *)ft_calloc_gnl((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1),
 			sizeof(char));
 	if (!result)
 		return (free(s1), s1 = NULL, NULL);

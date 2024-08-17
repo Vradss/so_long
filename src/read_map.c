@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:23:44 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 19:53:55 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/17 19:11:29 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,35 @@ int read_map(char *map)
     return (i);
 }
 
-t_map *create_map(char *file_path)
+char    **create_map(char *file)
 {
-    t_map *map;
-    int fd;
-    int i;
-    char *row;
+    int     fd;
+    char    *row;
+    int     i;
+    char    **map;
     
-    map = (t_map *)malloc(sizeof(t_map));
-    if (!map)
-        error("Error al asignar memoria para el mapa");
-    map->height = read_map(file_path);
-    
-    fd = open(file_path, O_RDONLY);
-    if (fd < 0)
-        error("Error al abrir el archivo");
-    
-    map->grid = (char **)malloc(sizeof(char *) * map->height);
-    if (!map->grid)
-    {
-        ft_printf("Error al asignar memoria para las filas del mapa\n");
-        free_map(map);
-        close(fd);
-        exit(1);
-    }
     i = 0;
-    while ((row = get_next_line(fd)) != NULL && i < map->height)
+    map = ft_calloc(read_map(file) + 1, sizeof(char *));
+    fd = open(file, O_RDONLY);
+    if (fd < 0)
+        error("File error");
+    row = get_next_line(fd);
+    while (row != NULL)
     {
-        map->grid[i] = ft_strdup(row); //copiamos la linea al map
-        //map->width = ft_strlen(row) -1 ; //guardamos el ancho de la linea
-        free(row);
+        map[i] = ft_strtrim(row, "\n \t\f\v\r");
+        row = get_next_line(fd);
         i++;
     }
+    map[i] = NULL;
     close(fd);
+    
+     // Imprimir el mapa para verificar si se guardó correctamente
+    i = 0;
+    while (map[i] != NULL)
+    {
+        printf("%s\n", map[i]);
+        i++;
+    }
     return(map);
 }
+
