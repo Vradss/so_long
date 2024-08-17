@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 20:13:17 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/17 22:31:21 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct  s_game {
 // Disjoint and vectos
 t_vec2  vec2(int x, int y);
 int     vec2_cmp(t_vec2 u, t_vec2 v);
+void    check_path_TESTING(t_game *game);
 
 //Check maps
 int     check_args(int argc, char **argv);

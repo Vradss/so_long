@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
+#    By: vradis <vradis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/08/14 21:39:12 by vflorez          ###   ########.fr        #
+#    Updated: 2024/08/17 22:30:09 by vradis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_FILES = \
 			src/check_maps.c \
 			src/error.c \
 			src/main.c \
+			src/check_path.c\
 
 MLX = $(SRC_DIR)/MLX42
 LIBFT = $(SRC_DIR)/libft

@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 20:36:50 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/17 22:38:03 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_vec2  determine_square_coordinates(char **grid, char element)
         }
         i++;
     }
+    return (vec2(-1, -1));
 }
 
 t_game  initialize_game(t_map *map)
@@ -78,7 +79,7 @@ int main(int argc, char **argv)
     }
     parsing(&map);
     game = initialize_game(&map);
-    
+    check_path_TESTING(&game);
     printf("Liberando el mapa...\n");
     //free_map(&map);
     
