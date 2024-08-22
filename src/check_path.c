@@ -6,12 +6,13 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/17 22:36:52 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:13:30 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+//Representa las coordenada en el mapa
 t_vec2 vec2(int x, int y)
 {
     t_vec2  u;
@@ -21,6 +22,7 @@ t_vec2 vec2(int x, int y)
     return (u);
 }
 
+//Compara 2 vectores o posiciones 
 int vec2_cmp(t_vec2 u, t_vec2 v)
 {
     int p;
@@ -29,6 +31,8 @@ int vec2_cmp(t_vec2 u, t_vec2 v)
     return (p);
 }
 
+//Search all the collectables on the map ans stores the
+// cooridnates in vec2
 t_vec2  *collectibles(char **grid, int count)
 {
     t_vec2  *collectibles;
@@ -54,7 +58,8 @@ t_vec2  *collectibles(char **grid, int count)
     }
     return (collectibles);
 }
-
+//Creates an auxiliary map 
+//that assigns numeric values to walkable cells and walls
 int **auxilliary_map(char **grid, int width, int height)
 {
     int **m;
@@ -90,7 +95,7 @@ int **auxilliary_map(char **grid, int width, int height)
     }
     return (m);
 }
-
+//Count walkable tiles or cells 
 int walkable_tiles(int **auxilliary_map, int width, int height)
 {
     int n;

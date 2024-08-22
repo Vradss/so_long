@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 22:31:21 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:01:48 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ typedef struct s_map {
 }t_map;
 
 typedef struct s_player {
-    t_vec2 pos;
+    t_vec2          pos;
+    mlx_image_t     *image;
 }t_player;
 
+
 typedef struct  s_game {
-    t_map   *map;
-    t_vec2  player;
+    t_map           *map;
+    t_vec2          player;
+    mlx_image_t     *wall_img;
+    mlx_image_t     *collec_img;
 }               t_game;
 
 // Disjoint and vectos

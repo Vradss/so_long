@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 22:38:03 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:19:41 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int main(int argc, char **argv)
         printf("Argumentos inválidos\n");
         return (1);
     }
-
     
     map.grid = create_map(argv[1]);
     if (!map.grid) {
