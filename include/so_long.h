@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/22 15:01:48 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/26 12:47:07 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,27 @@ typedef struct s_map {
 
 typedef struct s_player {
     t_vec2          pos;
-    mlx_image_t     *image;
-}t_player;
+    mlx_texture_t   *image;
+}       _player;
 
+typedef struct s_images{
+    mlx_texture_t   *wall_text;
+    mlx_image_t     *wall_img;
+    mlx_texture_t   *floor_text;
+    mlx_image_t     *floor_img;
+    mlx_texture_t   *player_text;
+    mlx_image_t     *player_img;
+    mlx_texture_t   *exit_text;
+    mlx_image_t     *exit_img;
+    mlx_texture_t   *coll_text;
+    mlx_image_t     *coll_img;
+}           t_images;
 
 typedef struct  s_game {
-    t_map           *map;
-    t_vec2          player;
-    mlx_image_t     *wall_img;
-    mlx_image_t     *collec_img;
+    t_map       *map;
+    t_vec2      player;
+    t_images    images;
+    mlx_t       *mlx;
 }               t_game;
 
 // Disjoint and vectos
@@ -68,11 +80,28 @@ size_t  map_width(char **map);
 size_t  map_height(char **map);
 void    parsing(t_map *map);
 
-//Utils
 
+//Build textures & images
+void    init_textures(t_game *game, mlx_t *mlx);
+void    render_map(mlx_t *mlx, mlx_image_t *floor_img, mlx_image_t *wall_img, char **map);
+
+//Utils
 void	error(char *message);
 void    free_map(t_map *map);
+void    free_textures(t_game *game, mlx_t *mlx);
 
+
+# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 800
+# define TILE_SIZE  64
+
+//Textures
+
+# define WALLS_SRC "./textures/bush_wall.png"
+# define COLLECT_SRC "./textures/collect.png"
+# define EXIT_SRC "./textures/exit.png"
+# define FLOOR_SRC "./textures/floor.png"
+# define PLAYER_SRC "./textures/homer_player.png"
 
 
 #endif

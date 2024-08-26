@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:38:43 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/15 14:44:53 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/22 18:21:00 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int check_args(int argc, char **argv)
 {
     if (argc != 2)
     {
-        ft_printf(ARGS_ERROR);
+        error(ARGS_ERROR);
         return (0);
     }
 

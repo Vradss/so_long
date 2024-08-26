@@ -6,7 +6,7 @@
 #    By: vradis <vradis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/08/17 22:30:09 by vradis           ###   ########.fr        #
+#    Updated: 2024/08/23 12:00:56 by vradis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC_FILES = \
 			src/check_maps.c \
 			src/error.c \
 			src/main.c \
-			src/check_path.c\
+			src/check_path.c \
+			src/textures.c
 
 MLX = $(SRC_DIR)/MLX42
 LIBFT = $(SRC_DIR)/libft

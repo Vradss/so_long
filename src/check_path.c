@@ -6,13 +6,13 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/22 15:13:30 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/26 11:15:55 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-//Representa las coordenada en el mapa
+//Represents the coordinates on the map
 t_vec2 vec2(int x, int y)
 {
     t_vec2  u;
@@ -22,7 +22,7 @@ t_vec2 vec2(int x, int y)
     return (u);
 }
 
-//Compara 2 vectores o posiciones 
+//Compares 2 vectors or positions
 int vec2_cmp(t_vec2 u, t_vec2 v)
 {
     int p;
@@ -32,7 +32,7 @@ int vec2_cmp(t_vec2 u, t_vec2 v)
 }
 
 //Search all the collectables on the map ans stores the
-// cooridnates in vec2
+//cooridnates in vec2
 t_vec2  *collectibles(char **grid, int count)
 {
     t_vec2  *collectibles;

@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 16:32:15 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/26 13:34:59 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,25 @@ void    error(char *message)
 	exit(1);
 }
 
+// void free_textures(t_game *game, mlx_t *mlx)
+// {
+//     if (game->wall_img)
+//     {
+//         mlx_delete_image(mlx, game->wall_img);
+//         game->wall_img = NULL;
+//     }
+// }
+
+void free_map(t_map *map)
+{
+    size_t i;
+
+    if (map->grid)
+    {
+        for (i = 0; i < map->height; i++)
+        {
+            free(map->grid[i]);
+        }
+        free(map->grid);
+    }
+}
