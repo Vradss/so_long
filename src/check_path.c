@@ -261,7 +261,7 @@ int	find_rep(int * rep, int element)
 
 	if (rep[element] == element)
 		return rep[element];
-	rep[element] = rep[rep[element]];
+	rep[element] = rep[rep[element]];  //el hijo del hijo pasa a ser representado por el padre general , nivel 1
 	return find_rep(rep, rep[element]);
 }
 
@@ -274,12 +274,12 @@ void set_union(t_disjoint_set * s, int adjacent_element, int cur_element)
 	n = find_rep(s->rep, adjacent_element);
 	if (s->depth[m] < s->depth[n])
 	{
-		s->rep[m] = n;
+		s->rep[m] = n;//bug here. All descendants represented by [m] should also come to be repped b n!
 		s->depth[n]++;
 	}
 	else 
 	{
-		s->rep[n] = m;
+		s->rep[n] = m;// same here
 		s->depth[m]++;
 	}
 }
@@ -293,7 +293,7 @@ void	union_find(t_disjoint_set *s, t_adjacents relations, int cur_element)
 	{
 		if (relations[i] != -1)
 		{
-			set_union(s, relations[i], cur_element);//bug is here
+			set_union(s, relations[i], cur_element);
 		}
 		i++;
 	}
