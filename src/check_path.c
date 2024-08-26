@@ -129,8 +129,12 @@ void put_aux_map(int**m, int width, int height)
 	{
 		for(int x = 0; x < width; x++)
 		{
-			printf("%d", m[y][x]);
+			if (m[y][x] == -1)
+				printf("  %c", 'W');
+			else
+				printf("%3d", m[y][x]);
 		}
+		printf("\n");
 		printf("\n");
 	}
 }
@@ -261,23 +265,22 @@ int	find_rep(int * rep, int element)
 	return find_rep(rep, rep[element]);
 }
 
-void set_union(t_disjoint_set * s, int cur_element, int adjacent_element)
+void set_union(t_disjoint_set * s, int adjacent_element, int cur_element)
 {
 	int m;
 	int n;
 
 	m = find_rep(s->rep, cur_element);
 	n = find_rep(s->rep, adjacent_element);
-	if (s->depth[m] > n)
-	{
-		s->rep[n] = m;
-		s->depth[m]++;
-	}
-	if (s->depth[m] < n)
+	if (s->depth[m] < s->depth[n])
 	{
 		s->rep[m] = n;
 		s->depth[n]++;
-
+	}
+	else 
+	{
+		s->rep[n] = m;
+		s->depth[m]++;
 	}
 }
 
@@ -286,12 +289,13 @@ void	union_find(t_disjoint_set *s, t_adjacents relations, int cur_element)
 	int i;
 
 	i = 0;
-	while (i++ < 4)
+	while (i < 4)
 	{
 		if (relations[i] != -1)
 		{
-			set_union(s, relations[i], cur_element);
+			set_union(s, relations[i], cur_element);//bug is here
 		}
+		i++;
 	}
 }
 
@@ -301,6 +305,12 @@ void	put_disjoint_set(t_disjoint_set *s)
 	for(int i = 0; i < s->v_count; i++)
 	{
 		printf(" [%d] ", s->rep[i]);
+	}
+	printf("\n");
+	printf("DESCENDANTS\n");
+	for(int i = 0; i < s->v_count; i++)
+	{
+		printf(" [%d] ", s->depth[i]);
 	}
 	printf("\n");
 }
