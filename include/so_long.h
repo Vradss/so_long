@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/26 12:47:07 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/26 19:48:30 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ typedef struct s_player {
     mlx_texture_t   *image;
 }       _player;
 
-typedef struct s_images{
-    mlx_texture_t   *wall_text;
+typedef struct s_images
+{
+	mlx_texture_t	*wall_text;
     mlx_image_t     *wall_img;
     mlx_texture_t   *floor_text;
     mlx_image_t     *floor_img;
@@ -55,7 +56,7 @@ typedef struct s_images{
     mlx_image_t     *coll_img;
 }           t_images;
 
-typedef struct  s_game {
+typedef struct	s_game {
     t_map       *map;
     t_vec2      player;
     t_images    images;
@@ -75,20 +76,19 @@ void    check_invalid_char(int c);
 void    check_map_char(t_map *map);
 void    check_map_rectangle(t_map *map);
 void    check_wall(t_map *map);
-char   **create_map(char *file);
+//char   **create_map(char *file);
+t_map   *create_map(char *file);
 size_t  map_width(char **map);
 size_t  map_height(char **map);
 void    parsing(t_map *map);
 
 
 //Build textures & images
-void    init_textures(t_game *game, mlx_t *mlx);
-void    render_map(mlx_t *mlx, mlx_image_t *floor_img, mlx_image_t *wall_img, char **map);
-
+//void    render_map(mlx_t *mlx, mlx_image_t *floor_img, mlx_image_t *wall_img, char **map);
+void    render_tile(t_game *game, size_t y, size_t x);
 //Utils
 void	error(char *message);
 void    free_map(t_map *map);
-void    free_textures(t_game *game, mlx_t *mlx);
 
 
 # define WINDOW_HEIGHT 800
