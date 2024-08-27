@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/26 13:35:35 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/27 12:23:17 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,41 +42,37 @@ t_game  initialize_game(t_map *map)
     return g;
 }
 
-// int main(int argc, char **argv)
-// { 
-//     t_map   map;
-//     t_game  game;
-//     mlx_t *mlx;
 
-//     mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Vrads", false);
-//     if (!mlx)
-//         error ("Faile to initialize");
+int main(int argc, char **argv)
+{
+    t_game game;
+    
+    if (!check_args(argc, argv)) 
+        return (1);
+    
+    printf("Comenzando el programa...\n");
+    
+    game.map = create_map(argv[1]);
+    if (!game.map)
+        error("Failed to load map");
+    
+    int width = game.map->width * TILE_SIZE;
+    int height = game.map->height * TILE_SIZE;
+    
+    game.mlx = mlx_init(width, height, "Vrads testing", true);
+    if (!game.mlx)
+        error("Failed to initialize MLX");
+    
+    ft_printf("Verificación parsing...\n");
+    parsing(game.map);
 
-//     if (!check_args(argc, argv)) {
-//         return (1);
-//     }
+    load_textures(&game);
+    render_map(&game);
+    mlx_loop(game.mlx);
+    cleanup_images(&game);
     
-//     printf("Comenzando el programa...\n");
-    
-//     map.grid = create_map(argv[1]);
-//     if (!map.grid) {
-//         printf("Error al crear el mapa\n");
-//         return (1);
-//     }
-//     //parsing(&map);
-//     game = initialize_game(&map);
-    
-//     init_textures(&game, mlx);
-//     render_map(&game, mlx);
-
-//     //check_path_TESTING(&game);
-
-//     mlx_loop(mlx);
-//     printf("Liberando el mapa...\n");
-//     free_map(&map);
-//     free_textures(&game, mlx);
-    
-//     printf("Finalizando el programa...\n");
-//     mlx_terminate(mlx);
-//     return (0);
-// }
+    ft_printf("Finalizando el programa...\n");
+    mlx_terminate(game.mlx);
+    free_map(game.map);
+    return EXIT_SUCCESS;
+}

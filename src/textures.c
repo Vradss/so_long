@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:28:38 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/26 20:05:55 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/27 12:23:24 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,55 +68,32 @@ void render_tile(t_game *game, size_t y, size_t x)
     else if (tile == 'P')
         mlx_image_to_window(game->mlx, game->images.player_img, tile_x, tile_y);
 }
-void cleanup_images(t_game game)
+void cleanup_images(t_game *game)
 {
-    if (game.images.floor_img)
-        mlx_delete_image(game.mlx, game.images.floor_img);
-    if (game.images.wall_img)
-        mlx_delete_image(game.mlx, game.images.wall_img);
-    if (game.images.coll_img)
-        mlx_delete_image(game.mlx, game.images.coll_img);
-    if (game.images.exit_img)
-        mlx_delete_image(game.mlx, game.images.exit_img);
-    if (game.images.player_img)
-        mlx_delete_image(game.mlx, game.images.player_img);
+    if (game->images.floor_img)
+        mlx_delete_image(game->mlx, game->images.floor_img);
+    if (game->images.wall_img)
+        mlx_delete_image(game->mlx, game->images.wall_img);
+    if (game->images.coll_img)
+        mlx_delete_image(game->mlx, game->images.coll_img);
+    if (game->images.exit_img)
+        mlx_delete_image(game->mlx, game->images.exit_img);
+    if (game->images.player_img)
+        mlx_delete_image(game->mlx, game->images.player_img);
 }
 
-int main(int argc, char **argv)
+
+void load_textures(t_game *game)
 {
+    game->images.floor_img = load_png(game->mlx, FLOOR_SRC);
+    game->images.wall_img = load_png(game->mlx, WALLS_SRC);
+    game->images.coll_img = load_png(game->mlx, COLLECT_SRC);
+    game->images.exit_img = load_png(game->mlx, EXIT_SRC);
+    game->images.player_img = load_png(game->mlx, PLAYER_SRC);
 
-    if (argc != 2)
+    if (!game->images.floor_img || !game->images.wall_img || !game->images.coll_img || 
+        !game->images.exit_img || !game->images.player_img)
     {
-        error("Usage: ./text2 map.ber");
-        return EXIT_FAILURE;
+        error("Failed to load one or more images");
     }
-
-    t_game game;
-    
-    game.map = create_map(argv[1]);
-    if (!game.map)
-        error("Failed to load map");
-
-        
-    int width =game.map->width * TILE_SIZE;
-    int height = game.map->height * TILE_SIZE;
-
-    
-    game.mlx = mlx_init(width, height, "Vrads testing", true);
-    if (!game.mlx)
-        error("Failed to initialize MLX");
-
-    game.images.floor_img = load_png(game.mlx, FLOOR_SRC);
-    game.images.wall_img = load_png(game.mlx, WALLS_SRC);
-    game.images.coll_img = load_png(game.mlx, COLLECT_SRC);
-    game.images.exit_img = load_png(game.mlx, EXIT_SRC);
-    game.images.player_img = load_png(game.mlx, PLAYER_SRC);
-
-    render_map(&game);
-    mlx_loop(game.mlx);
-    cleanup_images(game);
-    mlx_terminate(game.mlx);
-    free_map(game.map);
-
-    return EXIT_SUCCESS;
 }

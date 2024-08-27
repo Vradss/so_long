@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/26 19:48:30 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:36:47 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ typedef struct s_map {
     int     collectable;
     size_t  width;
     size_t  height;
-}t_map;
+}               t_map;
 
 typedef struct s_player {
     t_vec2          pos;
     mlx_texture_t   *image;
-}       _player;
+}               t_player;
 
 typedef struct s_images
 {
@@ -54,7 +54,7 @@ typedef struct s_images
     mlx_image_t     *exit_img;
     mlx_texture_t   *coll_text;
     mlx_image_t     *coll_img;
-}           t_images;
+}               t_images;
 
 typedef struct	s_game {
     t_map       *map;
@@ -76,7 +76,6 @@ void    check_invalid_char(int c);
 void    check_map_char(t_map *map);
 void    check_map_rectangle(t_map *map);
 void    check_wall(t_map *map);
-//char   **create_map(char *file);
 t_map   *create_map(char *file);
 size_t  map_width(char **map);
 size_t  map_height(char **map);
