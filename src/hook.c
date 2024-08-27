@@ -18,10 +18,11 @@ typedef struct pos{
 
 vector2 pos = {0,0};
 
-static void error(void) {
-    puts(mlx_strerror(mlx_errno));
-    exit(EXIT_FAILURE);
-}
+// static void error(void) 
+// {
+//     puts(mlx_strerror(mlx_errno));
+//     exit(EXIT_FAILURE);
+// }
 void draw_pix(mlx_image_t *img, int x, int y){
     mlx_put_pixel(img, x, y, 0xFFFFFF);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/27 12:23:17 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/27 19:51:59 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,19 @@ int main(int argc, char **argv)
     int width = game.map->width * TILE_SIZE;
     int height = game.map->height * TILE_SIZE;
     
+    parsing(game.map);
     game.mlx = mlx_init(width, height, "Vrads testing", true);
     if (!game.mlx)
         error("Failed to initialize MLX");
     
-    ft_printf("Verificación parsing...\n");
-    parsing(game.map);
+    //ft_printf("Verificación parsing...\n");
+    
+    game.player = determine_square_coordinates(game.map->grid, 'P');
+
 
     load_textures(&game);
     render_map(&game);
+    mlx_key_hook(game.mlx, &handle_input, &game);
     mlx_loop(game.mlx);
     cleanup_images(&game);
     

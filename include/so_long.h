@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/27 10:36:47 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/27 19:52:39 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_map {
 
 typedef struct s_player {
     t_vec2          pos;
-    mlx_texture_t   *image;
+    int             steps;
 }               t_player;
 
 typedef struct s_images
@@ -83,18 +83,23 @@ void    parsing(t_map *map);
 
 
 //Build textures & images
-//void    render_map(mlx_t *mlx, mlx_image_t *floor_img, mlx_image_t *wall_img, char **map);
+void    render_map(t_game *game);
 void    render_tile(t_game *game, size_t y, size_t x);
+void    cleanup_images(t_game *game);
+void    load_textures(t_game *game);
+
+//Movements
+//void    key_hook(mlx_key_data_t keydata, void *param);
+void    move_player(t_game *game, int new_x, int new_y);
+void    handle_input(mlx_key_data_t keydata, void *param);
+
 //Utils
 void	error(char *message);
 void    free_map(t_map *map);
 
 
-# define WINDOW_HEIGHT 800
-# define WINDOW_WIDTH 800
 # define TILE_SIZE  64
 
-//Textures
 
 # define WALLS_SRC "./textures/bush_wall.png"
 # define COLLECT_SRC "./textures/collect.png"
