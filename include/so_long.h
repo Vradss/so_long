@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/27 19:52:39 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:00:05 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_map {
 
 typedef struct s_player {
     t_vec2          pos;
-    int             steps;
 }               t_player;
 
 typedef struct s_images
@@ -57,10 +56,12 @@ typedef struct s_images
 }               t_images;
 
 typedef struct	s_game {
-    t_map       *map;
-    t_vec2      player;
-    t_images    images;
-    mlx_t       *mlx;
+    t_map           *map;
+    t_vec2          player;
+    int             steps;
+    t_images        images;
+    mlx_t           *mlx;
+    mlx_instance_t  *player_instance;
 }               t_game;
 
 // Disjoint and vectos
@@ -89,7 +90,7 @@ void    cleanup_images(t_game *game);
 void    load_textures(t_game *game);
 
 //Movements
-//void    key_hook(mlx_key_data_t keydata, void *param);
+void render_player(t_game *game);
 void    move_player(t_game *game, int new_x, int new_y);
 void    handle_input(mlx_key_data_t keydata, void *param);
 

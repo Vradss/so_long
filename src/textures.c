@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:28:38 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/27 12:23:24 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/28 18:27:06 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void render_map(t_game *game)
         x = 0;
         while (game->map->grid[y][x] != '\0')
         {
-            render_tile(game, y, x);
+            if (game->map->grid[y][x] != 'P')
+                render_tile(game, y, x);
             x++;
         }
         y++;
     }
+    render_player(game);
 }
 
 void render_tile(t_game *game, size_t y, size_t x)
@@ -65,8 +67,16 @@ void render_tile(t_game *game, size_t y, size_t x)
         mlx_image_to_window(game->mlx, game->images.coll_img, tile_x, tile_y);
     else if (tile == 'E')
         mlx_image_to_window(game->mlx, game->images.exit_img, tile_x, tile_y);
-    else if (tile == 'P')
-        mlx_image_to_window(game->mlx, game->images.player_img, tile_x, tile_y);
+}
+void render_player(t_game *game)
+{
+    int player_x;
+    int player_y;
+    
+    player_x = game->player.x * TILE_SIZE;
+    player_y = game->player.y * TILE_SIZE;
+    mlx_image_to_window(game->mlx, game->images.player_img, player_x, player_y);
+    
 }
 void cleanup_images(t_game *game)
 {
@@ -90,7 +100,7 @@ void load_textures(t_game *game)
     game->images.coll_img = load_png(game->mlx, COLLECT_SRC);
     game->images.exit_img = load_png(game->mlx, EXIT_SRC);
     game->images.player_img = load_png(game->mlx, PLAYER_SRC);
-
+    
     if (!game->images.floor_img || !game->images.wall_img || !game->images.coll_img || 
         !game->images.exit_img || !game->images.player_img)
     {

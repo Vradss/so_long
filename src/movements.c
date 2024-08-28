@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:24:14 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/27 19:54:44 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:48:45 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void move_player(t_game *game, int dx, int dy)
     size_t new_x = game->player.x + dx;
     size_t new_y = game->player.y + dy;
 
+
+    if (new_x < game->map->width && new_y < game->map->height)
+    {
         char new_tile = game->map->grid[new_y][new_x];
 
-        // Comprobar que no es una pared
         if (new_tile != '1')
         {
             // Actualizar la posición en la cuadrícula
@@ -64,38 +66,44 @@ void move_player(t_game *game, int dx, int dy)
             game->images.player_img->instances[0].x = new_x * TILE_SIZE;
             game->images.player_img->instances[0].y = new_y * TILE_SIZE;
 
-            // Manejar otros elementos como coleccionables o la salida
+            
+
             if (new_tile == 'C')
             {
-                // Recoger coleccionable, reducir su cantidad
                 game->map->collectable--;
+                printf("Coleccionables restantes: %d\n", game->map->collectable);
             }
-            else if (new_tile == 'E' && game->map->collectable == 0)
+
+            if (new_tile == 'E' && game->map->collectable == 0)
             {
                 // Si no quedan coleccionables y el jugador llega a la salida
                 printf("¡Has ganado!\n");
                 exit(0);
             }
-
             // Incrementar el contador de pasos
-            // game->player.steps++;
-            // printf("Pasos: %d\n", game->player.steps);
+            game->steps++;
+            printf("Pasos: %d\n", game->steps);
+            
         }
+    printf("new_tail %c\n", new_tile);
+    
+    }
 }
 
+//colocar que los key de las flechas sean MLX_REPEAT PARA IR RAPIDO OJITO
 
 void handle_input(mlx_key_data_t keydata, void *param)
 {
     t_game *game = (t_game *)param;
 
     if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-        move_player(game, 0, -1);  // Mover hacia arriba
+        move_player(game, 0, -1);  
     else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-        move_player(game, 0, 1);  // Mover hacia abajo
+        move_player(game, 0, 1);  
     else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-        move_player(game, -1, 0);  // Mover hacia la izquierda
+        move_player(game, -1, 0);  
     else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-        move_player(game, 1, 0);  // Mover hacia la derecha
+        move_player(game, 1, 0);  
     else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-        exit(0);  // Salir del juego
+        exit(0);
 }

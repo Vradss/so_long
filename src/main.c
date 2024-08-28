@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/27 19:51:59 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:05:22 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_game  initialize_game(t_map *map)
 int main(int argc, char **argv)
 {
     t_game game;
+    game.steps = 0;
     
     if (!check_args(argc, argv)) 
         return (1);
@@ -73,7 +74,7 @@ int main(int argc, char **argv)
     render_map(&game);
     mlx_key_hook(game.mlx, &handle_input, &game);
     mlx_loop(game.mlx);
-    cleanup_images(&game);
+   // cleanup_images(&game);
     
     ft_printf("Finalizando el programa...\n");
     mlx_terminate(game.mlx);
