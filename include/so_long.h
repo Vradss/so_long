@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/28 19:00:05 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/01 17:43:35 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void    cleanup_images(t_game *game);
 void    load_textures(t_game *game);
 
 //Movements
-void render_player(t_game *game);
+void    render_player(t_game *game);
 void    move_player(t_game *game, int new_x, int new_y);
 void    handle_input(mlx_key_data_t keydata, void *param);
 

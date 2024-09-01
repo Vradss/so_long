@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:28:38 by vradis            #+#    #+#             */
-/*   Updated: 2024/08/28 18:27:06 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/01 19:35:23 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void render_player(t_game *game)
     
     player_x = game->player.x * TILE_SIZE;
     player_y = game->player.y * TILE_SIZE;
+    mlx_image_to_window(game->mlx, game->images.floor_img, player_x, player_y);
     mlx_image_to_window(game->mlx, game->images.player_img, player_x, player_y);
     
 }
