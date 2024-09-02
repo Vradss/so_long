@@ -6,7 +6,7 @@
 #    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/09/02 19:18:58 by vflorez          ###   ########.fr        #
+#    Updated: 2024/09/02 21:00:39 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,11 @@ SRC_FILES = \
 			src/error.c \
 			src/main.c \
 			src/check_path.c \
+			src/check_path_validity.c \
+			src/check_path_adjacency.c \
+			src/check_path_disjoint.c \
+			src/check_path_union.c \
+			src/check_path_collec.c \
 			src/textures.c \
 			src/movements.c \
 
