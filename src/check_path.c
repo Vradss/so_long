@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/02 16:40:24 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:06:43 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,16 +371,34 @@ void check_path_validity(t_game *game)
 void	check_collectibles(t_auxiliary_map *m, t_disjoint_set *s, t_game *g, int target_rep)
 {
 	int collect;
+	int i;
+
+	i = 0;
 	
 	collect = m->grid[g->collectibles[0].y][g->collectibles[0].x];
-	if (s->rep[collect] == target_rep)
+	put_collectibles(g->collectibles, g->map->collectable);
+	
+
+	while (i <= g->map->collectable)
 	{
-		printf("Collectible is reachable\n");
+		if (s->rep[collect] == target_rep)
+		{
+			collect = m->grid[g->collectibles[i].y][g->collectibles[i].x];
+			i++;
+		}
+		else
+		{
+			error("Player and exit dont have the same rep");
+		}
 	}
-	else
-	{
-		printf("Collectible is not reachable\n");
-	}
+	// if (s->rep[collect] == target_rep)
+	// {
+	// 	printf("Player and exit have the same rep\n");
+	// }
+	// else
+	// {
+	// 	error("Player and exit dont have the same rep");
+	// }
 }
 
 void	check_rep(t_auxiliary_map *a, t_disjoint_set *s, t_game *game)

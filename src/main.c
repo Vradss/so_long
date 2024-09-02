@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 15:47:13 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:06:46 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
     parsing(game.map);
     game = initialize_game(game.map);
     ft_printf("DIVIDER\n");
-    //check_path_TESTING(&game);
+    check_path_TESTING(&game);
     check_path_validity(&game);
     game.mlx = mlx_init(width, height, "Vrads testing", false);
     if (!game.mlx)
