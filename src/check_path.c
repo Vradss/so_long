@@ -252,7 +252,7 @@ int	*new_rep_array(int v_count)
 
 typedef struct	s_disjoint_set {
 	int *rep;
-	int	*depth;
+	int	*rank;
 	int	v_count;
 }				t_disjoint_set;				 
 
@@ -261,7 +261,7 @@ int	find_rep(int * rep, int element)
 
 	if (rep[element] == element)
 		return rep[element];
-	rep[element] = rep[rep[element]];  //el hijo del hijo pasa a ser representado por el padre general , nivel 1
+	rep[element] = rep[rep[element]];
 	return find_rep(rep, rep[element]);
 }
 
@@ -272,15 +272,15 @@ void set_union(t_disjoint_set * s, int adjacent_element, int cur_element)
 
 	m = find_rep(s->rep, cur_element);
 	n = find_rep(s->rep, adjacent_element);
-	if (s->depth[m] < s->depth[n])
+	if (s->rank[m] < s->rank[n])
 	{
-		s->rep[m] = n;//bug here. All descendants represented by [m] should also come to be repped b n!
-		s->depth[n]++;
+		s->rep[m] = n;
+		s->rank[n]++;
 	}
 	else 
 	{
-		s->rep[n] = m;// same here
-		s->depth[m]++;
+		s->rep[n] = m;
+		s->rank[m]++;
 	}
 }
 
@@ -307,12 +307,23 @@ void	put_disjoint_set(t_disjoint_set *s)
 		printf(" [%d] ", s->rep[i]);
 	}
 	printf("\n");
-	printf("DESCENDANTS\n");
+	printf("RANK\n");
 	for(int i = 0; i < s->v_count; i++)
 	{
-		printf(" [%d] ", s->depth[i]);
+		printf(" [%d] ", s->rank[i]);
 	}
 	printf("\n");
+}
+
+void compress_subtrees(t_disjoint_set	*s)
+{
+	int i = 0;
+
+	while (i < s->v_count)
+	{
+		find_rep(s->rep, i);
+		i++;
+	}
 }
 
 t_disjoint_set	*new_disjoint_set(t_adjacents *adjacency_map, int element_n)
@@ -325,7 +336,7 @@ t_disjoint_set	*new_disjoint_set(t_adjacents *adjacency_map, int element_n)
 	if (s)
 	{
 		s->rep =  new_rep_array(element_n);
-		s->depth = ft_calloc(element_n, sizeof(int));
+		s->rank = ft_calloc(element_n, sizeof(int));
 		s->v_count = element_n;
 		while (i < element_n)
 		{
@@ -333,6 +344,7 @@ t_disjoint_set	*new_disjoint_set(t_adjacents *adjacency_map, int element_n)
 			i++;
 		}
 	}
+	compress_subtrees(s);
 	return (s);
 }
 
@@ -351,6 +363,4 @@ void    check_path_TESTING(t_game *game)
 	put_aux_map(aux_map.grid, aux_map.width, aux_map.height);
 	put_adjacency_map(adjacency_map, aux_map.walkable_tiles_count);
 	put_disjoint_set(disjoint_set);
-	(void)adjacency_map;
-	(void)disjoint_set;
 }
