@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_maps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:24:25 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 19:37:50 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/26 19:18:52 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void check_map_area(t_map *map)
     map->player = 0;
     map->exit = 0;
     map->collectable = 0;
- 
+
     x = 0;
     while (x < map->height)
     {

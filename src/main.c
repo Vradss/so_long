@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 22:38:03 by vradis           ###   ########.fr       */
+/*   Updated: 2024/08/28 19:05:22 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-
-void print_map(t_map *map)
-{
-    if (!map || !map->grid)
-    {
-        printf("El mapa no está inicializado o es nulo.\n");
-        return;
-    }
-   // ft_printf("Número de filas: %d\n", map->height);
-    //ft_printf("Número de columnas: %d\n", map->width);
-    
-    for (size_t i = 0; i < map->height; i++)
-    {
-        printf("%s\n", map->grid[i]);
-    }
-}
 
 t_vec2  determine_square_coordinates(char **grid, char element)
 {
@@ -56,33 +39,45 @@ t_game  initialize_game(t_map *map)
 
     g.map = map;
     g.player = determine_square_coordinates(map->grid, 'P');
-    return (g);
+    return g;
 }
 
-int main(int argc, char **argv)
-{ 
-    t_map   map;
-    t_game  game;
 
+int main(int argc, char **argv)
+{
+    t_game game;
+    game.steps = 0;
+    
+    if (!check_args(argc, argv)) 
+        return (1);
+    
     printf("Comenzando el programa...\n");
     
-    if (!check_args(argc, argv)) {
-        printf("Argumentos inválidos\n");
-        return (1);
-    }
+    game.map = create_map(argv[1]);
+    if (!game.map)
+        error("Failed to load map");
+    
+    int width = game.map->width * TILE_SIZE;
+    int height = game.map->height * TILE_SIZE;
+    
+    parsing(game.map);
+    game.mlx = mlx_init(width, height, "Vrads testing", true);
+    if (!game.mlx)
+        error("Failed to initialize MLX");
+    
+    //ft_printf("Verificación parsing...\n");
+    
+    game.player = determine_square_coordinates(game.map->grid, 'P');
 
+
+    load_textures(&game);
+    render_map(&game);
+    mlx_key_hook(game.mlx, &handle_input, &game);
+    mlx_loop(game.mlx);
+   // cleanup_images(&game);
     
-    map.grid = create_map(argv[1]);
-    if (!map.grid) {
-        printf("Error al crear el mapa\n");
-        return (1);
-    }
-    parsing(&map);
-    game = initialize_game(&map);
-    check_path_TESTING(&game);
-    printf("Liberando el mapa...\n");
-    //free_map(&map);
-    
-    printf("Finalizando el programa...\n");
-    return (0);
+    ft_printf("Finalizando el programa...\n");
+    mlx_terminate(game.mlx);
+    free_map(game.map);
+    return EXIT_SUCCESS;
 }
