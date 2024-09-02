@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/28 19:05:22 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:47:13 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ t_vec2  determine_square_coordinates(char **grid, char element)
     return (vec2(-1, -1));
 }
 
+
 t_game  initialize_game(t_map *map)
 {
     t_game  g;
 
     g.map = map;
     g.player = determine_square_coordinates(map->grid, 'P');
+    g.exit = determine_square_coordinates(map->grid, 'E');
+    g.collectibles = collectibles(map->grid, map->collectable); 
     return g;
 }
 
@@ -61,14 +64,14 @@ int main(int argc, char **argv)
     int height = game.map->height * TILE_SIZE;
     
     parsing(game.map);
-    game.mlx = mlx_init(width, height, "Vrads testing", true);
+    game = initialize_game(game.map);
+    ft_printf("DIVIDER\n");
+    //check_path_TESTING(&game);
+    check_path_validity(&game);
+    game.mlx = mlx_init(width, height, "Vrads testing", false);
     if (!game.mlx)
         error("Failed to initialize MLX");
     
-    //ft_printf("Verificación parsing...\n");
-    
-    game.player = determine_square_coordinates(game.map->grid, 'P');
-
 
     load_textures(&game);
     render_map(&game);

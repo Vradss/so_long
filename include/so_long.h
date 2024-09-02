@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/01 17:43:35 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:37:05 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ typedef struct s_map {
     size_t  height;
 }               t_map;
 
+typedef struct  s_auxiliary {
+	int **grid;
+	int width;
+	int height;
+	int walkable_tiles_count;
+}               t_auxiliary_map;
+
+typedef int t_adjacents[4];
+
+typedef struct	s_disjoint_set {
+	int *rep;
+	int	*rank;
+	int	v_count;
+}				t_disjoint_set;		
+
 typedef struct s_player {
     t_vec2          pos;
 }               t_player;
@@ -62,6 +77,8 @@ typedef struct	s_game {
     t_images        images;
     mlx_t           *mlx;
     mlx_instance_t  *player_instance;
+    t_vec2          exit;
+    t_vec2          *collectibles;
 }               t_game;
 
 // Disjoint and vectos
@@ -81,6 +98,11 @@ t_map   *create_map(char *file);
 size_t  map_width(char **map);
 size_t  map_height(char **map);
 void    parsing(t_map *map);
+void	check_rep(t_auxiliary_map *a, t_disjoint_set *s, t_game *game);
+void    check_path_validity(t_game *game);
+t_game  initialize_game(t_map *map);
+t_vec2  *collectibles(char **grid, int count);
+t_disjoint_set *build_disjoint_set(t_auxiliary_map aux_map);
 
 
 //Build textures & images
@@ -91,8 +113,8 @@ void    load_textures(t_game *game);
 
 //Movements
 void    render_player(t_game *game);
-void    move_player(t_game *game, int new_x, int new_y);
 void    handle_input(mlx_key_data_t keydata, void *param);
+
 
 //Utils
 void	error(char *message);

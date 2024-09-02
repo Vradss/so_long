@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/27 11:02:46 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/02 16:03:17 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ void    error(char *message)
 	ft_putendl_fd(message, 2);
 	exit(1);
 }
-
-// void free_textures(t_game *game, mlx_t *mlx)
-// {
-//     if (game->wall_img)
-//     {
-//         mlx_delete_image(mlx, game->wall_img);
-//         game->wall_img = NULL;
-//     }
-// }
 
 void free_map(t_map *map)
 {
