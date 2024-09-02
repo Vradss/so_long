@@ -6,7 +6,7 @@
 #    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/08/27 19:52:54 by vflorez          ###   ########.fr        #
+#    Updated: 2024/09/02 19:18:58 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRC_FILES = \
 			src/check_args.c \
 			src/read_map.c \
 			src/check_maps.c \
+			src/check_maps2.c \
+			src/handle_input.c \
 			src/error.c \
 			src/main.c \
 			src/check_path.c \

@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/02 18:06:43 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:32:14 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,17 +388,9 @@ void	check_collectibles(t_auxiliary_map *m, t_disjoint_set *s, t_game *g, int ta
 		}
 		else
 		{
-			error("Player and exit dont have the same rep");
+			error("You can't reach all collectibles");
 		}
 	}
-	// if (s->rep[collect] == target_rep)
-	// {
-	// 	printf("Player and exit have the same rep\n");
-	// }
-	// else
-	// {
-	// 	error("Player and exit dont have the same rep");
-	// }
 }
 
 void	check_rep(t_auxiliary_map *a, t_disjoint_set *s, t_game *game)

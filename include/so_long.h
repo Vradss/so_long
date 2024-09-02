@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 16:37:05 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/02 19:38:02 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,15 @@ void    load_textures(t_game *game);
 //Movements
 void    render_player(t_game *game);
 void    handle_input(mlx_key_data_t keydata, void *param);
-
+void	move_player_left(t_game *game, int dx, int dy);
+void	move_player_right(t_game *game, int dx, int dy);
+void	move_player_up(t_game *game, int dx, int dy);
+void	move_player_down(t_game *game, int dx, int dy);
 
 //Utils
 void	error(char *message);
 void    free_map(t_map *map);
+void	success(char *message);
 
 
 # define TILE_SIZE  64
