@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_collec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:24:56 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 21:06:55 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:15:42 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_collec(t_aux_map *m, t_disjoint_set *s, t_game *g, int target_rep)
 	i = 0;
 	collect = m->grid[g->collectibles[0].y][g->collectibles[0].x];
 	//put_collectibles(g->collectibles, g->map->collectable);
-	while (i <= g->map->collectable)
+	while (i < g->map->collectable)
 	{
 		if (s->rep[collect] == target_rep)
 		{

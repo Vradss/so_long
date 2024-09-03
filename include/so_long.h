@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 21:11:21 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:54:23 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	move_player_down(t_game *game, int dx, int dy);
 void	error(char *message);
 void	free_map(t_map *map);
 void	success(char *message);
+void 	free_disjoint_set(t_disjoint_set *s);
 
 # define TILE_SIZE  64
 

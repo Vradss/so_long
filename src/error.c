@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 19:10:59 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:53:52 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ void	success(char *message)
 {
 	ft_putendl_fd(message, 1);
 	exit(0);
+}
+
+void free_disjoint_set(t_disjoint_set *s) 
+{
+    if (s) {
+        if (s->rep) {
+            free(s->rep);
+            s->rep = NULL;
+        }
+        if (s->rank) {
+            free(s->rank);
+            s->rank = NULL;
+        }
+        free(s);
+        s = NULL;
+    }
 }

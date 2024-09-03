@@ -6,7 +6,7 @@
 /*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:39:10 by vflorez           #+#    #+#             */
-/*   Updated: 2024/08/17 13:51:55 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/03 17:43:44 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ char	*get_line_storage(char *storage)
 	i = 0;
 	while (storage[i] && storage[i] != '\n')
 		i++;
-	if (storage[0] == '\0')
+	if (!storage || storage[0] == '\0')
+		return (NULL);
+	if (i == 0)
 		return (NULL);
 	line = (char *)ft_calloc_gnl((i + 1 + (storage[i] == '\n')), sizeof(char));
 	if (!line)

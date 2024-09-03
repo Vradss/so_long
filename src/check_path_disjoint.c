@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_disjoint.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:50:19 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 20:52:14 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:01:41 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_disjoint_set	*build_disjoint_set(t_aux_map aux_map)
 
 	adjacency_map = new_adjacency_map(aux_map);
 	disjoint_set = new_disj_set(adjacency_map, aux_map.walkable_tiles_count);
+	free(adjacency_map);
 	return (disjoint_set);
 }
 
