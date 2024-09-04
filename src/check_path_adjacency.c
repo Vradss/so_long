@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_adjacency.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:47:03 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 10:49:00 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 17:42:27 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,18 @@ int	*new_rep_array(int v_count)
 	}
 	return (rep);
 }
+
+// void	put_adjacency_map(t_adjacents *map, int n)
+// {
+// 	printf("ADJ MAP\n");
+// 	for (int i = 0; i < n; i++)
+// 	{
+// 		printf("[ ");
+// 		for (int j = 0; j < 4; j++)
+// 		{
+// 			printf("%d ", map[i][j]);
+// 		}
+// 		printf("] ");
+// 	}
+// 	printf("\n");
+// }

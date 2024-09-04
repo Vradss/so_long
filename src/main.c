@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 12:44:46 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 20:30:24 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vec2	determine_square_coordinates(char **grid, char element)
 	return (vec2(-1, -1));
 }
 
-t_game	initialize_game(t_map *map)
+t_game	setup_game(t_map *map)
 {
 	t_game	g;
 
@@ -44,6 +44,15 @@ t_game	initialize_game(t_map *map)
 	return (g);
 }
 
+void	initialize_game(t_game *game, int argc , char **argv)
+{
+	if (!check_args(argc, argv))
+		exit(1);
+	game->map = create_map(argv[1]);
+	if (!game->map)
+		error("Failed to load map");
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -51,15 +60,11 @@ int	main(int argc, char **argv)
 	int		height;
 
 	game.steps = 0;
-	if (!check_args(argc, argv))
-		return (1);
-	game.map = create_map(argv[1]);
-	if (!game.map)
-		error("Failed to load map");
+	initialize_game(&game, argc, argv);
 	width = game.map->width * TILE_SIZE;
 	height = game.map->height * TILE_SIZE;
 	parsing(game.map);
-	game = initialize_game(game.map);
+	game = setup_game(game.map);
 	//check_path_TESTING(&game);
 	check_path_validity(&game);
 	game.mlx = mlx_init(width, height, "La gran Vraaads", false);
@@ -69,8 +74,7 @@ int	main(int argc, char **argv)
 	render_map(&game);
 	mlx_key_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);
-	//cleanup_images(&game);
-	mlx_terminate(game.mlx);
 	free_map(game.map);
+	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }

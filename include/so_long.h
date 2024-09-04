@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 12:05:22 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 19:28:53 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,66 +87,73 @@ typedef struct	s_game {
 	t_vec2          *collectibles;
 }               t_game;
 
-// Disjoint and vectos
+//Coordinates
 t_vec2	vec2(int x, int y);
 int     vec2_cmp(t_vec2 u, t_vec2 v);
+t_vec2	determine_square_coordinates(char **grid, char element);
 //void    check_path_TESTING(t_game *game);
 
-//Check maps
+//Parsing Maps
 int     check_args(int argc, char **argv);
-int     read_map(char *map);
-void    check_map_area(t_map *map);
 void    check_invalid_char(int c);
+void    check_map_area(t_map *map);
 void    check_map_char(t_map *map);
 void    check_map_rectangle(t_map *map);
 void    check_wall(t_map *map);
-t_map   *create_map(char *file);
 size_t  map_width(char **map);
 size_t  map_height(char **map);
 void    parsing(t_map *map);
-void	check_rep(t_aux_map *a, t_disjoint_set *s, t_game *game);
-void    check_path_validity(t_game *game);
-t_game  initialize_game(t_map *map);
-t_vec2  *collectibles(char **grid, int count);
-t_disjoint_set *build_disjoint_set(t_aux_map aux_map);
-t_aux_map	auxiliary_map(char **grid, int width, int height);
-void	check_path_validity(t_game *game);
-void	check_rep(t_aux_map *a, t_disjoint_set *s, t_game *game);
-void	check_collec(t_aux_map *m, t_disjoint_set *s, \
-t_game *g, int target_rep);
 
-t_vec2	vec2(int x, int y);
-int	vec2_cmp(t_vec2 u, t_vec2 v);
-int	maximum(int a, int b);
-int	minimum(int a, int b);
-int	clamp(int value, int min, int max);
-
-//Disjoint set
-void	compress_subtrees(t_disjoint_set	*s);
-t_disjoint_set	*new_disj_set(t_adjacents *adjacency_map, int element_n);
-t_disjoint_set	*build_disjoint_set(t_aux_map aux_map);
-int	find_rep(int *rep, int element);
-void	set_union(t_disjoint_set *s, int adjacent_element, int cur_element);
-void	union_find(t_disjoint_set *s, t_adjacents relations, int cur_element);
-int	walkable_tiles(int **grid, int width, int height);
-int	is_walkable(int square);
-void	mark_relations(t_adjacents *a, t_aux_map m, int i, int j);
-t_adjacents	*new_adjacency_map(t_aux_map m);
-int	*new_rep_array(int v_count);
+//Initialize Maps
+int     read_map(char *map);
+t_map	*init_map(char *file, int fd);
+t_map   *create_map(char *file);
+void	print_map(t_map *map);
 
 //Build textures & images
 void    render_map(t_game *game);
 void    render_tile(t_game *game, size_t y, size_t x);
-void    cleanup_images(t_game *game);
+void	render_player(t_game *game);
 void    load_textures(t_game *game);
+void    cleanup_images(t_game *game);
 
-//Movements
-void    render_player(t_game *game);
-void    handle_input(mlx_key_data_t keydata, void *param);
+//Movements & handle input
 void	move_player_left(t_game *game, int dx, int dy);
 void	move_player_right(t_game *game, int dx, int dy);
 void	move_player_up(t_game *game, int dx, int dy);
 void	move_player_down(t_game *game, int dx, int dy);
+void    handle_input(mlx_key_data_t keydata, void *param);
+
+//Check adjacency
+int		maximum(int a, int b);
+int		minimum(int a, int b);
+int		clamp(int value, int min, int max);
+int		walkable_tiles(int **grid, int width, int height);
+int		is_walkable(int square);
+void	mark_relations(t_adjacents *a, t_aux_map m, int i, int j);
+t_adjacents	*new_adjacency_map(t_aux_map m);
+int		*new_rep_array(int v_count);
+
+//Union-find (Disjoint set)
+void			compress_subtrees(t_disjoint_set	*s);
+t_disjoint_set	*new_disj_set(t_adjacents *adjacency_map, int element_n);
+t_disjoint_set	*build_disjoint_set(t_aux_map aux_map);
+int		find_rep(int *rep, int element);
+void	set_union(t_disjoint_set *s, int adjacent_element, int cur_element);
+void	union_find(t_disjoint_set *s, t_adjacents relations, int cur_element);
+
+//Check collect
+t_vec2  *collectibles(char **grid, int count);
+void	check_collec(t_aux_map *m, t_disjoint_set *s, t_game *g, int target_rep);
+
+//Check validity path
+t_aux_map	auxiliary_map(char **grid, int width, int height);
+void		check_path_validity(t_game *game);
+void		check_rep(t_aux_map *a, t_disjoint_set *s, t_game *game);
+
+//Main
+t_game  setup_game(t_map *map);
+void	initialize_game(t_game *game, int argc , char **argv);
 
 //Utils
 void	error(char *message);

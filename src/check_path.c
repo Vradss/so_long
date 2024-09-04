@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/02 20:53:13 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 17:42:33 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,4 @@ int	clamp(int value, int min, int max)
 	return (minimum(maximum(min, value), max));
 }
 
-// void	put_adjacency_map(t_adjacents *map, int n)
-// {
-// 	printf("ADJ MAP\n");
-// 	for (int i = 0; i < n; i++)
-// 	{
-// 		printf("[ ");
-// 		for (int j = 0; j < 4; j++)
-// 		{
-// 			printf("%d ", map[i][j]);
-// 		}
-// 		printf("] ");
-// 	}
-// 	printf("\n");
-// }
+

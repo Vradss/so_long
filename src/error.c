@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 12:04:59 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 20:24:17 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	free_map(t_map *map)
 		}
 		free(map->grid);
 	}
+	free(map);
 }
 
 void	success(char *message)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_validity.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:37:49 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 12:04:19 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 18:46:48 by vradis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,6 @@ void	check_rep(t_aux_map *a, t_disjoint_set *s, t_game *game)
 	}
 }
 
-// void    check_path_TESTING(t_game *game)
-// {
-// 	t_aux_map aux_map;
-// 	t_adjacents		*adjacency_map;
-// 	t_disjoint_set	*disjoint_set;
-
-// 	printf("pos player(%d, %d)\n",game->player.x, game->player.y);
-// 	printf("pos exit(%d, %d)\n",game->exit.x, game->exit.y);
-// 	put_collectibles(collectibles(game->map->grid, game->map->collectable), game->map->collectable);
-// 	aux_map = auxiliary_map(game->map->grid, game->map->width, game->map->height);
-// 	adjacency_map = new_adjacency_map(aux_map);
-// 	disjoint_set = new_disjoint_set(adjacency_map, aux_map.walkable_tiles_count);
-// 	put_aux_map(aux_map.grid, aux_map.width, aux_map.height);
-// 	put_adjacency_map(adjacency_map, aux_map.walkable_tiles_count);
-// 	put_disjoint_set(disjoint_set);
-// }
 
 // void put_aux_map(int**m, int width, int height)
 // {
@@ -102,4 +86,63 @@ void	check_rep(t_aux_map *a, t_disjoint_set *s, t_game *game)
 // 		printf("\n");
 // 		printf("\n");
 // 	}
+// }
+
+// void	put_adjacency_map(t_adjacents *map, int n)
+// {
+// 	printf("ADJ MAP\n");
+// 	for (int i = 0; i < n; i++)
+// 	{
+// 		printf("[ ");
+// 		for (int j = 0; j < 4; j++)
+// 		{
+// 			printf("%d ", map[i][j]);
+// 		}
+// 		printf("] ");
+// 	}
+// 	printf("\n");
+// }
+
+// void	put_disjoint_set(t_disjoint_set *s)
+// {
+// 	printf("DISJOINT SET\n");
+// 	for(int i = 0; i < s->v_count; i++)
+// 	{
+// 		printf(" [%d] ", s->rep[i]);
+// 	}
+// 	printf("\n");
+// 	printf("RANK\n");
+// 	for(int i = 0; i < s->v_count; i++)
+// 	{
+// 		printf(" [%d] ", s->rank[i]);
+// 	}
+// 	printf("\n");
+// }
+
+// void	put_collectibles(t_vec2 *c, int n)
+// {
+// 	printf("pos collectibles\n");
+// 	for(int i = 0; i < n; i++)
+// 	{
+// 		printf(" [%d, %d] ", c[i].x, c[i].y);
+// 	}
+// 	printf("\n");
+// }
+
+// void    check_path_TESTING(t_game *game)
+// {
+// 	t_aux_map aux_map;
+// 	t_adjacents		*adjacency_map;
+// 	t_disjoint_set	*disjoint_set;
+
+// 	printf("pos player(%d, %d)\n",game->player.x, game->player.y);
+// 	printf("pos exit(%d, %d)\n",game->exit.x, game->exit.y);
+// 	put_collectibles(collectibles(game->map->grid, game->map->collectable), game->map->collectable);
+// 	aux_map = auxiliary_map(game->map->grid, game->map->width, game->map->height);
+// 	adjacency_map = new_adjacency_map(aux_map);
+// 	disjoint_set = new_disj_set(adjacency_map, aux_map.walkable_tiles_count);
+// 	print_map(game->map);
+// 	put_aux_map(aux_map.grid, aux_map.width, aux_map.height);
+// 	put_adjacency_map(adjacency_map, aux_map.walkable_tiles_count);
+// 	put_disjoint_set(disjoint_set);
 // }
