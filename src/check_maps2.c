@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:48:55 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 18:51:30 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 12:47:48 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ size_t	map_width(char **map)
 
 void	parsing(t_map *map)
 {
+	if (!map->height)
+		error("Map is empty");
 	map->width = map_width(map->grid);
 	map->height = map_height(map->grid);
 	check_map_area(map);

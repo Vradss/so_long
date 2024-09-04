@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 19:40:15 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 12:44:46 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	render_map(&game);
 	mlx_key_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);
-   // cleanup_images(&game);
+	//cleanup_images(&game);
 	mlx_terminate(game.mlx);
 	free_map(game.map);
 	return (EXIT_SUCCESS);

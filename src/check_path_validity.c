@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_validity.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:37:49 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/03 17:55:55 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 12:04:19 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	check_path_validity(t_game *game)
 	game->map->height);
 	disjoint_set = build_disjoint_set(aux_map);
 	check_rep(&aux_map, disjoint_set, game);
+	free_aux_map(&aux_map);
 	free_disjoint_set(disjoint_set);
 }
 

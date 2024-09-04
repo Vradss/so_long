@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:18:30 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/02 19:18:45 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 11:45:54 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 		else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT))
 			move_player_right(game, 1, 0);
 		else if (keydata.key == MLX_KEY_ESCAPE)
+		{
+			cleanup_images(game);
 			exit(0);
+		}
 	}
 }

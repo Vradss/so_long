@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:01:46 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/03 17:54:23 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 12:05:22 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,35 @@
 # include "../src/libft/get_next_line.h"
 # include "../src/MLX42/include/MLX42/MLX42.h"
 
-enum e_Relations {LEFT, TOP, RIGHT, BOTTOM};
+enum e_Relations
+{LEFT, TOP, RIGHT, BOTTOM};
 
-typedef struct s_vec2 {
-	int x;
-	int y;
-}               t_vec2;
+typedef int	t_adjacents[4];
 
-typedef struct s_map {
-	char    **grid;
-	int     player;
-	int     exit;
-	int     collectable;
-	size_t  width;
-	size_t  height;
-}               t_map;
+typedef struct s_vec2
+{
+	int	x;
+	int	y;
+}				t_vec2;
 
-typedef struct  s_auxiliary {
-	int **grid;
-	int width;
-	int height;
-	int walkable_tiles_count;
-}               t_aux_map;
+typedef struct s_map
+{
+	char	**grid;
+	int		player;
+	int		exit;
+	int		collectable;
+	size_t	width;
+	size_t	height;
+}				t_map;
 
-typedef int t_adjacents[4];
+typedef struct s_auxiliary
+{
+	int	**grid;
+	int	width;
+	int	height;
+	int	walkable_tiles_count;
+}			t_aux_map;
+
 
 typedef struct	s_disjoint_set {
 	int *rep;
@@ -83,7 +88,7 @@ typedef struct	s_game {
 }               t_game;
 
 // Disjoint and vectos
-t_vec2  vec2(int x, int y);
+t_vec2	vec2(int x, int y);
 int     vec2_cmp(t_vec2 u, t_vec2 v);
 //void    check_path_TESTING(t_game *game);
 
@@ -132,7 +137,7 @@ int	*new_rep_array(int v_count);
 //Build textures & images
 void    render_map(t_game *game);
 void    render_tile(t_game *game, size_t y, size_t x);
-//void    cleanup_images(t_game *game);
+void    cleanup_images(t_game *game);
 void    load_textures(t_game *game);
 
 //Movements
@@ -148,6 +153,7 @@ void	error(char *message);
 void	free_map(t_map *map);
 void	success(char *message);
 void 	free_disjoint_set(t_disjoint_set *s);
+void	free_aux_map(t_aux_map *m);
 
 # define TILE_SIZE  64
 

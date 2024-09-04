@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:28:38 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/02 19:31:08 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 11:42:43 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,19 @@ void	render_player(t_game *game)
 	mlx_image_to_window(game->mlx, game->images.player_img, player_x, player_y);
 }
 
-// void cleanup_images(t_game *game)
-// {
-// 	if (game->images.floor_img)
-// 		mlx_delete_image(game->mlx, game->images.floor_img);
-// 	if (game->images.wall_img)
-// 		mlx_delete_image(game->mlx, game->images.wall_img);
-// 	if (game->images.coll_img)
-// 		mlx_delete_image(game->mlx, game->images.coll_img);
-// 	if (game->images.exit_img)
-// 		mlx_delete_image(game->mlx, game->images.exit_img);
-// 	if (game->images.player_img)
-// 		mlx_delete_image(game->mlx, game->images.player_img);
-// }
+void cleanup_images(t_game *game)
+{
+	if (game->images.floor_img)
+		mlx_delete_image(game->mlx, game->images.floor_img);
+	if (game->images.wall_img)
+		mlx_delete_image(game->mlx, game->images.wall_img);
+	if (game->images.coll_img)
+		mlx_delete_image(game->mlx, game->images.coll_img);
+	if (game->images.exit_img)
+		mlx_delete_image(game->mlx, game->images.exit_img);
+	if (game->images.player_img)
+		mlx_delete_image(game->mlx, game->images.player_img);
+}
 
 void	load_textures(t_game *game)
 {

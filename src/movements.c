@@ -6,7 +6,7 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:24:14 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/02 19:19:36 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:49:56 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	decrease_collectible(t_game *game, size_t new_x, size_t new_y)
 {
 	game->map->collectable--;
 	game->map->grid[new_y][new_x] = '0';
-	printf("Remaining collectibles: %d\n", game->map->collectable);
+	ft_printf("Nº Collectibles: %d\n", game->map->collectable);
 }
 
 void	move_player_left(t_game *game, int dx, int dy)
@@ -44,7 +44,7 @@ void	move_player_left(t_game *game, int dx, int dy)
 		if (game->map->grid[new_y][new_x] == 'E' && game->map->collectable == 0)
 			success("You help Rick to become a pickle!");
 		game->steps++;
-		printf("Steps: %d\n", game->steps);
+		ft_printf("Steps: %d\n", game->steps);
 	}
 }
 
@@ -73,7 +73,7 @@ void	move_player_right(t_game *game, int dx, int dy)
 		if (game->map->grid[new_y][new_x] == 'E' && game->map->collectable == 0)
 			success("You help Rick to become a pickle!");
 		game->steps++;
-		printf("Steps: %d\n", game->steps);
+		ft_printf("Steps: %d\n", game->steps);
 	}
 }
 
@@ -102,7 +102,7 @@ void	move_player_up(t_game *game, int dx, int dy)
 		if (game->map->grid[new_y][new_x] == 'E' && game->map->collectable == 0)
 			success("You help Rick to become a pickle!");
 		game->steps++;
-		printf("Steps: %d\n", game->steps);
+		ft_printf("Steps: %d\n", game->steps);
 	}
 }
 
@@ -131,6 +131,6 @@ void	move_player_down(t_game *game, int dx, int dy)
 		if (game->map->grid[new_y][new_x] == 'E' && game->map->collectable == 0)
 			success("You help Rick to become a pickle!");
 		game->steps++;
-		printf("Steps: %d\n", game->steps);
+		ft_printf("Steps: %d\n", game->steps);
 	}
 }

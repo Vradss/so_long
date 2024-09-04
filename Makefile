@@ -6,7 +6,7 @@
 #    By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 16:43:41 by vflorez           #+#    #+#              #
-#    Updated: 2024/09/02 21:00:39 by vflorez          ###   ########.fr        #
+#    Updated: 2024/09/04 11:38:26 by vflorez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBFT = $(SRC_DIR)/libft
 PRINTF = $(SRC_DIR)/Printf
 
 #Compiler
-CC = gcc
+CC = gcc -g3
 CFLAGS = -Wextra -Wall -Werror -Wunreachable-code -Ofast
 MLX_FLAGS = -L./$(MLX)/build -lmlx42 -I $(MLX)/include -ldl -lglfw -pthread -lm
 LINKFLAGS = -L./$(LIBFT) -lft -L./$(PRINTF) -lftprintf

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:23:44 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/03 17:46:34 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 12:41:16 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,16 @@ t_map	*create_map(char *file)
 	while (row != NULL)
 	{
 		map->grid[i] = ft_strtrim(row, "\n \t\f\v\r");
+		free(row);
 		row = get_next_line(fd);
 		i++;
 	}
+	free(row);
 	map->grid[i] = NULL;
 	close(fd);
 	map->height = i;
-	map->width = ft_strlen(map->grid[0]);
+	if (map->height > 0)
+		map->width = ft_strlen(map->grid[0]);
 	return (map);
 }
 
@@ -69,7 +72,7 @@ void	print_map(t_map *map)
 	i = 0;
 	while (map->grid[i] != NULL)
 	{
-		printf("%s\n", map->grid[i]);
+		ft_printf("%s\n", map->grid[i]);
 		i++;
 	}
 }

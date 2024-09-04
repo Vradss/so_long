@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_adjacency.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:47:03 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/03 18:00:41 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 10:49:00 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_adjacents	*new_adjacency_map(t_aux_map m)
 	i = 0;
 	j = 0;
 	k = 0;
-	printf(" h %d w %d\n", m.height, m.width);
 	while (i < m.height)
 	{
 		j = 0;

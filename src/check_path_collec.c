@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path_collec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:24:56 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/03 18:15:42 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 11:32:54 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_vec2	*collectibles(char **grid, int count)
 	int		i;
 	int		j;
 	int		n;
-
+	
+	ft_printf("COUNT: %d\n", count);
 	collectibles = malloc(sizeof(t_vec2) * count);
 	if (!collectibles)
 		return (NULL);
@@ -59,6 +60,11 @@ void	check_collec(t_aux_map *m, t_disjoint_set *s, t_game *g, int target_rep)
 			error("You can't reach all collectibles");
 		}
 	}
+	if (s->rep[collect] != target_rep)
+		{
+			error("You can't reach all collectibles");
+		}
+		ft_printf("%d\n", g->map->collectable);
 }
 
 // void	put_collectibles(t_vec2 *c, int n)
