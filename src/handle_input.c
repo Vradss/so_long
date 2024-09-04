@@ -6,11 +6,25 @@
 /*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:18:30 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 11:45:54 by vflorez          ###   ########.fr       */
+/*   Updated: 2024/09/04 21:46:38 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	cleanup_images(t_game *game)
+{
+	if (game->images.floor_img)
+		mlx_delete_image(game->mlx, game->images.floor_img);
+	if (game->images.wall_img)
+		mlx_delete_image(game->mlx, game->images.wall_img);
+	if (game->images.coll_img)
+		mlx_delete_image(game->mlx, game->images.coll_img);
+	if (game->images.exit_img)
+		mlx_delete_image(game->mlx, game->images.exit_img);
+	if (game->images.player_img)
+		mlx_delete_image(game->mlx, game->images.player_img);
+}
 
 void	handle_input(mlx_key_data_t keydata, void *param)
 {

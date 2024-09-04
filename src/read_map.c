@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:23:44 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 20:16:14 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 23:17:59 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,24 @@ int	read_map(char *map)
 
 t_map	*init_map(char *file, int fd)
 {
-	t_map *map;
-	
+	t_map	*map;
+
 	map = malloc(sizeof(t_map));
 	if (!map)
 		error("Memory allocation failed");
 	map->grid = ft_calloc(read_map(file) + 1, sizeof(char *));
 	if (!map->grid)
 	{
-		free(map);
+		free_map(map);
 		error("Memory allocation failed");
-	}	
+	}
 	if (fd < 0)
+	{
+		free_map(map);
 		error("File error");
+	}
 	return (map);
 }
-
 
 t_map	*create_map(char *file)
 {
@@ -89,5 +91,5 @@ void	print_map(t_map *map)
 		ft_printf(" %s \n", map->grid[i]);
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }

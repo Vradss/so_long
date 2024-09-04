@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:50:21 by vradis            #+#    #+#             */
-/*   Updated: 2024/09/04 17:42:33 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 21:48:57 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,3 @@ int	clamp(int value, int min, int max)
 {
 	return (minimum(maximum(min, value), max));
 }
-
-

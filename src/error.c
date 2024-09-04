@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:32:18 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 20:24:17 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 21:48:12 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,23 @@ void	success(char *message)
 	exit(0);
 }
 
-void	free_disjoint_set(t_disjoint_set *s) 
+void	free_disjoint_set(t_disjoint_set *s)
 {
-    if (s) {
-        if (s->rep) {
-            free(s->rep);
-            s->rep = NULL;
-        }
-        if (s->rank) {
-            free(s->rank);
-            s->rank = NULL;
-        }
-        free(s);
-        s = NULL;
-    }
+	if (s)
+	{
+		if (s->rep)
+		{
+			free(s->rep);
+			s->rep = NULL;
+		}
+		if (s->rank)
+		{
+			free(s->rank);
+			s->rank = NULL;
+		}
+		free(s);
+		s = NULL;
+	}
 }
 
 void	free_aux_map(t_aux_map *m)

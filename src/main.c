@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vradis <vradis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vflorez <vflorez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:38:48 by vflorez           #+#    #+#             */
-/*   Updated: 2024/09/04 20:30:24 by vradis           ###   ########.fr       */
+/*   Updated: 2024/09/04 23:11:40 by vflorez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_game	setup_game(t_map *map)
 	return (g);
 }
 
-void	initialize_game(t_game *game, int argc , char **argv)
+void	initialize_game(t_game *game, int argc, char **argv)
 {
 	if (!check_args(argc, argv))
 		exit(1);
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	height = game.map->height * TILE_SIZE;
 	parsing(game.map);
 	game = setup_game(game.map);
-	//check_path_TESTING(&game);
 	check_path_validity(&game);
 	game.mlx = mlx_init(width, height, "La gran Vraaads", false);
 	if (!game.mlx)
@@ -75,6 +74,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.mlx, &handle_input, &game);
 	mlx_loop(game.mlx);
 	free_map(game.map);
+	cleanup_images(&game);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
